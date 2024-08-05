@@ -287,16 +287,16 @@
         },
         {
             "name": "ifcastle/service-manager",
-            "version": "v0.5.1",
+            "version": "v0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/service-manager.git",
-                "reference": "e7655671805c33bdca05bab5aee1c58e8a138f97"
+                "reference": "9a87ee40bdb094a1903f816d7670087a4d789c69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/service-manager/zipball/e7655671805c33bdca05bab5aee1c58e8a138f97",
-                "reference": "e7655671805c33bdca05bab5aee1c58e8a138f97",
+                "url": "https://api.github.com/repos/EdmondDantes/service-manager/zipball/9a87ee40bdb094a1903f816d7670087a4d789c69",
+                "reference": "9a87ee40bdb094a1903f816d7670087a4d789c69",
                 "shasum": ""
             },
             "require": {
@@ -325,22 +325,22 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/service-manager/issues",
-                "source": "https://github.com/EdmondDantes/service-manager/tree/v0.5.1"
+                "source": "https://github.com/EdmondDantes/service-manager/tree/v0.5.2"
             },
-            "time": "2024-08-04T16:47:55+00:00"
+            "time": "2024-08-05T11:49:49+00:00"
         },
         {
             "name": "ifcastle/type-definitions",
-            "version": "v0.5.4",
+            "version": "v0.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/type-definitions.git",
-                "reference": "2b46613de05594cc0a5d53534abad4d62bbec46c"
+                "reference": "40f59776fe0604f6c46aea96fe269f47a55ff862"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/type-definitions/zipball/2b46613de05594cc0a5d53534abad4d62bbec46c",
-                "reference": "2b46613de05594cc0a5d53534abad4d62bbec46c",
+                "url": "https://api.github.com/repos/EdmondDantes/type-definitions/zipball/40f59776fe0604f6c46aea96fe269f47a55ff862",
+                "reference": "40f59776fe0604f6c46aea96fe269f47a55ff862",
                 "shasum": ""
             },
             "require": {
@@ -373,9 +373,9 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/type-definitions/issues",
-                "source": "https://github.com/EdmondDantes/type-definitions/tree/v0.5.4"
+                "source": "https://github.com/EdmondDantes/type-definitions/tree/v0.5.6"
             },
-            "time": "2024-07-28T07:42:37+00:00"
+            "time": "2024-08-05T12:16:03+00:00"
         },
         {
             "name": "psr/container",

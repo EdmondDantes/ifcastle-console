@@ -93,7 +93,7 @@ class CommandBuildHelper
 
             if($parameter->findAttribute(FromEnv::class) !== null) {
                 $fromEnv            = true;
-            } else if((false === $definition->isScalar() && false === $definition->canBySerializedFromString())) {
+            } else if((false === $definition->isScalar() && false === $definition->canDecodeFromString())) {
                 
                 $normalizedType     = self::normalizeDefinition($definition);
                 

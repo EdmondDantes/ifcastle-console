@@ -7,6 +7,13 @@ use IfCastle\DI\Dependency;
 use IfCastle\DI\DisposableInterface;
 use IfCastle\DI\InjectableInterface;
 use IfCastle\DI\InjectorTrait;
+use IfCastle\Events\CallbackEventHandler;
+use IfCastle\Events\EventInterface;
+use IfCastle\Events\Progress\ProgressDispatcher;
+use IfCastle\Events\Progress\ProgressDispatcherInterface;
+use IfCastle\Events\Progress\ProgressInterface;
+use IfCastle\Events\Progress\ProgressItemInterface;
+use IfCastle\Events\Progress\ProgressPercentageInterface;
 use IfCastle\ServiceManager\Exceptions\ServiceException;
 use IfCastle\ServiceManager\ExecutorInterface;
 use IfCastle\TypeDefinitions\DefinitionInterface;
@@ -125,7 +132,7 @@ class ServiceCommand                extends Command
                  * @see CommandBuildHelper::normalizeDefinition()
                  */
                 $parameters[$key]   = match ($type) {
-                    ProgressDispatcherI::class  => $this->createProgressDispatcher($input, $output),
+                    ProgressDispatcherInterface::class  => $this->createProgressDispatcher($input, $output),
                     InputInterface::class       => $input,
                     OutputInterface::class      => $output,
                     default                     => throw new ServiceException([
@@ -156,13 +163,13 @@ class ServiceCommand                extends Command
      *
      *
      */
-    protected function createProgressDispatcher(InputInterface $input, OutputInterface $output): ProgressDispatcherI
+    protected function createProgressDispatcher(InputInterface $input, OutputInterface $output): ProgressDispatcherInterface
     {
         $progressBar                = null;
         
-        return new ProgressDispatcher(new CallbackEventHandler(static function (EventI $event) use($input, $output, &$progressBar) {
+        return new ProgressDispatcher(new CallbackEventHandler(static function (EventInterface $event) use($input, $output, &$progressBar) {
             
-            if($event instanceof ProgressItemI) {
+            if($event instanceof ProgressItemInterface) {
                 
                 if($progressBar === null) {
                     $progressBar    = new ProgressBar($output, $event->getProgressItemTotal());
@@ -175,7 +182,7 @@ class ServiceCommand                extends Command
                 $progressBar->setMessage($event->getProgressItemName().$status);
                 $progressBar->setMessage((string)memory_get_usage(true), 'memory');
                 
-            } elseif ($event instanceof ProgressPercentageI) {
+            } elseif ($event instanceof ProgressPercentageInterface) {
                 
                 if($progressBar === null) {
                     $progressBar    = new ProgressBar($output, 100);
@@ -186,7 +193,7 @@ class ServiceCommand                extends Command
                 $progressBar->setMessage($event->getDescription());
                 $progressBar->setMessage((string)memory_get_usage(true), 'memory');
                 
-            } elseif($event instanceof ProgressI) {
+            } elseif($event instanceof ProgressInterface) {
                 
                 if($progressBar === null) {
                     $progressBar    = new ProgressBar($output);

@@ -6,6 +6,8 @@ namespace IfCastle\Console;
 use IfCastle\DI\ContainerInterface;
 use IfCastle\ServiceManager\DescriptorRepositoryInterface;
 use IfCastle\ServiceManager\DescriptorWalker;
+use IfCastle\ServiceManager\ServiceDescriptorInterface;
+use IfCastle\TypeDefinitions\FunctionDescriptorInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
@@ -68,7 +70,11 @@ class CommandLoader      implements CommandLoaderInterface
     {
         $this->commands             = [];
         
-        foreach (DescriptorWalker::walk($this->descriptorRepository) as $serviceName => $methodDescriptor) {
+        foreach (DescriptorWalker::walkWithService($this->descriptorRepository) as $serviceName => [$serviceDescriptor, $methodDescriptor]) {
+            
+            if(false === $methodDescriptor instanceof FunctionDescriptorInterface || false === $serviceDescriptor instanceof ServiceDescriptorInterface) {
+                continue;
+            }
             
             $console                = $methodDescriptor->findAttribute(Console::class);
             
@@ -76,12 +82,12 @@ class CommandLoader      implements CommandLoaderInterface
                 continue;
             }
             
-            $commandName            = CommandBuildHelper::getCommandName($console, $methodDescriptor, $serviceName);
+            $commandName            = CommandBuildHelper::getCommandName($console, $methodDescriptor, $serviceDescriptor, $serviceName);
             
             $this->commands[$commandName] = new ServiceCommand(
                 $commandName,
                 $serviceName,
-                $methodDescriptor->getMethod(),
+                $methodDescriptor->getName(),
                 CommandBuildHelper::buildArgumentsAndOptions($methodDescriptor),
                 $console->aliases,
                 $console->help,
