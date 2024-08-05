@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4397dea2bfb7bc5fecf60b2e81e4bab2",
+    "content-hash": "7c91b2266499bf8dd3155925133a0554",
     "packages": [
         {
             "name": "ifcastle/application",
@@ -148,6 +148,52 @@
                 "source": "https://github.com/EdmondDantes/di/tree/v0.5.4"
             },
             "time": "2024-07-31T14:04:15+00:00"
+        },
+        {
+            "name": "ifcastle/events",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EdmondDantes/events.git",
+                "reference": "e92becf3fba02bfc9edd0f5eeddd6cc928899bd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EdmondDantes/events/zipball/e92becf3fba02bfc9edd0f5eeddd6cc928899bd4",
+                "reference": "e92becf3fba02bfc9edd0f5eeddd6cc928899bd4",
+                "shasum": ""
+            },
+            "require": {
+                "ifcastle/exceptions": "^5.0",
+                "ifcastle/type-definitions": "^0.5.4"
+            },
+            "require-dev": {
+                "amphp/php-cs-fixer-config": "^2.1",
+                "friendsofphp/php-cs-fixer": "^3.60",
+                "phpunit/phpunit": "^11.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IfCastle\\Events\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Implementation of the Events + EventDispatcher pattern.",
+            "keywords": [
+                "event-dispatcher",
+                "event-listener",
+                "event-subscriber",
+                "events"
+            ],
+            "support": {
+                "issues": "https://github.com/EdmondDantes/events/issues",
+                "source": "https://github.com/EdmondDantes/events/tree/v0.2.0"
+            },
+            "time": "2024-08-05T10:22:38+00:00"
         },
         {
             "name": "ifcastle/exceptions",

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace IfCastle\Console;
 
+use IfCastle\Events\Progress\ProgressDispatcherInterface;
 use IfCastle\ServiceManager\Exceptions\ServiceException;
 use IfCastle\ServiceManager\ServiceDescriptorInterface;
 use IfCastle\TypeDefinitions\DefinitionInterface;
@@ -53,7 +54,7 @@ class CommandBuildHelper
         $type                       = new \ReflectionClass($definition->getTypeName());
         
         return match (true) {
-            $type->implementsInterface(ProgressDispatcherI::class) => ProgressDispatcherI::class,
+            $type->implementsInterface(ProgressDispatcherInterface::class) => ProgressDispatcherInterface::class,
             $type->implementsInterface(InputInterface::class) => InputInterface::class,
             $type->implementsInterface(OutputInterface::class) => OutputInterface::class,
             default => null
