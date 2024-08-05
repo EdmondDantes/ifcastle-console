@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace IfCastle\Console;
 
-use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
+use IfCastle\DI\ContainerInterface;
+use IfCastle\ServiceManager\DescriptorRepositoryInterface;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -54,27 +55,15 @@ class SymfonyApplication            extends \Symfony\Component\Console\Applicati
         }
     }
     
-    public function __construct(string $name = 'IfCastle', string $version = '1.0.0', array $namespaces = [])
+    public function __construct(
+        ContainerInterface            $container,
+        DescriptorRepositoryInterface $descriptorRepository,
+        string                        $name = 'IfCastle',
+        string                        $version = '1.0.0'
+    )
     {
         parent::__construct($name, $version);
-        $this->commandLoader        = new CommandLoader($namespaces);
+        $this->commandLoader        = new CommandLoader($container, $descriptorRepository);
         $this->setCommandLoader($this->commandLoader);
-    }
-    
-    public function setSystemEnvironment(SystemEnvironmentI $systemEnvironment): static
-    {
-        $this->commandLoader->injectDependenciesFromLocator($systemEnvironment)->initializeAfterInject();
-        return $this;
-    }
-    
-    protected function createCommandLoader(): CommandLoaderInterface
-    {
-        $class                      = __NAMESPACE__.'\\AppCommandLoader';
-        
-        if(class_exists($class)) {
-            return new $class();
-        }
-        
-        return new CommandLoader();
     }
 }
