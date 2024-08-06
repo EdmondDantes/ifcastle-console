@@ -3,10 +3,9 @@ declare(strict_types=1);
 
 namespace IfCastle\Console;
 
-use IfCastle\DI\Dependency;
+use IfCastle\DI\AutoResolverInterface;
+use IfCastle\DI\ContainerInterface;
 use IfCastle\DI\DisposableInterface;
-use IfCastle\DI\InjectableInterface;
-use IfCastle\DI\InjectorTrait;
 use IfCastle\Events\CallbackEventHandler;
 use IfCastle\Events\EventInterface;
 use IfCastle\Events\Progress\ProgressDispatcher;
@@ -28,12 +27,9 @@ use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ServiceCommand                extends Command
-                                    implements InjectableInterface
+                                    implements AutoResolverInterface
 {
-    use InjectorTrait;
-    
-    #[Dependency]
-    protected ExecutorInterface $serviceExecutor;
+    protected ExecutorInterface|null $serviceExecutor = null;
     
     public function __construct(
         public string $commandName,
@@ -93,10 +89,27 @@ class ServiceCommand                extends Command
         $this->setHidden($isHidden);
     }
     
+    public function resolveDependencies(ContainerInterface $container): static
+    {
+        if(isset($this->serviceExecutor) === false) {
+            $this->serviceExecutor   = $container->findDependency(ExecutorInterface::class);
+        }
+        
+        return $this;
+    }
+    
     #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
+            
+            if($this->serviceExecutor === null) {
+                throw new ServiceException([
+                    'template'  => 'Service executor dependency not resolved for console command {service}->{command}',
+                    'service'   => $this->serviceName,
+                    'command'   => $this->getName()
+                ]);
+            }
             
             $result                 = $this->serviceExecutor->executeCommand(
                 $this->serviceName, $this->methodName, $this->resolveParameters($input, $output)

@@ -61,7 +61,7 @@ class CommandLoader      implements CommandLoaderInterface
     
     protected function instantiateCommand(ServiceCommand $command): Command
     {
-        $command->injectDependenciesFromLocator($this->locator)->initializeAfterInject();
+        $command->resolveDependencies($this->container);
         
         return $command;
     }
