@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CommandBuildHelper
 {
-    public static function getCommandName(Console                     $console,
+    public static function getCommandName(AsConsole                   $console,
                                           FunctionDescriptorInterface $methodDescriptor,
                                           ServiceDescriptorInterface  $serviceDescriptor,
                                           string                      $serviceName
@@ -29,9 +29,9 @@ class CommandBuildHelper
 
         // Inherit service console attribute if current undefined
         if($console->namespace === null) {
-            $serviceConsole     = $serviceDescriptor->findAttribute(Console::class);
+            $serviceConsole     = $serviceDescriptor->findAttribute(AsConsole::class);
             
-            if($serviceConsole instanceof Console) {
+            if($serviceConsole instanceof AsConsole) {
                 $console        = $serviceConsole;
             }
         }

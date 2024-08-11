@@ -76,7 +76,7 @@ class CommandLoader      implements CommandLoaderInterface
                 continue;
             }
             
-            $console                = $methodDescriptor->findAttribute(Console::class);
+            $console                = $methodDescriptor->findAttribute(AsConsole::class);
             
             if($console === null) {
                 continue;

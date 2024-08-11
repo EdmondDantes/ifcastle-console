@@ -8,7 +8,7 @@ use IfCastle\TypeDefinitions\NativeSerialization\AttributeNameInterface;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_METHOD | Attribute::TARGET_CLASS)]
-readonly class Console                  implements AttributeNameInterface
+readonly class AsConsole                implements AttributeNameInterface
 {
     public function __construct(
         public string   $commandName    = '',
