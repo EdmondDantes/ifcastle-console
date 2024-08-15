@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace IfCastle\Console;
 
 use IfCastle\Application\ApplicationAbstract;
+use IfCastle\Application\EngineInterface;
 use IfCastle\ServiceManager\DescriptorRepositoryInterface;
 
 class ConsoleApplication            extends ApplicationAbstract
@@ -14,5 +15,11 @@ class ConsoleApplication            extends ApplicationAbstract
             $this->systemEnvironment,
             $this->systemEnvironment->resolveDependency(DescriptorRepositoryInterface::class)
         ))->run();
+    }
+    
+    #[\Override]
+    protected function defineEngine(): EngineInterface|null
+    {
+        return new ConsoleEngine;
     }
 }

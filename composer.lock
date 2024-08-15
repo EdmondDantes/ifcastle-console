@@ -8,27 +8,29 @@
     "packages": [
         {
             "name": "ifcastle/application",
-            "version": "v0.5.3",
+            "version": "v0.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/application.git",
-                "reference": "47d5530b5930cb50c0ab83f670cb62c489d4ec09"
+                "reference": "25dc50166d2748b1673f0a1527520d1c68e9739d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/application/zipball/47d5530b5930cb50c0ab83f670cb62c489d4ec09",
-                "reference": "47d5530b5930cb50c0ab83f670cb62c489d4ec09",
+                "url": "https://api.github.com/repos/EdmondDantes/application/zipball/25dc50166d2748b1673f0a1527520d1c68e9739d",
+                "reference": "25dc50166d2748b1673f0a1527520d1c68e9739d",
                 "shasum": ""
             },
             "require": {
                 "ifcastle/design-patterns": "^0.1.0",
                 "ifcastle/di": "^0.5.2",
                 "ifcastle/os-utilities": "^0.5.0",
+                "ifcastle/service-manager": "^0.5.3",
                 "psr/log": "^3.0"
             },
             "require-dev": {
                 "amphp/php-cs-fixer-config": "^2.1",
-                "friendsofphp/php-cs-fixer": "^3.60"
+                "friendsofphp/php-cs-fixer": "^3.60",
+                "phpunit/phpunit": "^11.3"
             },
             "type": "library",
             "autoload": {
@@ -48,22 +50,22 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/application/issues",
-                "source": "https://github.com/EdmondDantes/application/tree/v0.5.3"
+                "source": "https://github.com/EdmondDantes/application/tree/v0.5.10"
             },
-            "time": "2024-08-05T13:05:48+00:00"
+            "time": "2024-08-15T12:12:22+00:00"
         },
         {
             "name": "ifcastle/design-patterns",
-            "version": "v0.1.0",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/design-patterns.git",
-                "reference": "560979e7a392257e90d3516bfc6e853f436ad1fc"
+                "reference": "ba1e08686c61970dfb59d10a1052c05a06183c7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/design-patterns/zipball/560979e7a392257e90d3516bfc6e853f436ad1fc",
-                "reference": "560979e7a392257e90d3516bfc6e853f436ad1fc",
+                "url": "https://api.github.com/repos/EdmondDantes/design-patterns/zipball/ba1e08686c61970dfb59d10a1052c05a06183c7a",
+                "reference": "ba1e08686c61970dfb59d10a1052c05a06183c7a",
                 "shasum": ""
             },
             "require": {
@@ -93,22 +95,22 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/design-patterns/issues",
-                "source": "https://github.com/EdmondDantes/design-patterns/tree/v0.1.0"
+                "source": "https://github.com/EdmondDantes/design-patterns/tree/v0.1.3"
             },
-            "time": "2024-07-29T15:04:45+00:00"
+            "time": "2024-08-14T09:39:10+00:00"
         },
         {
             "name": "ifcastle/di",
-            "version": "v0.5.4",
+            "version": "v0.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/di.git",
-                "reference": "7187bdd379c8b7c08b4933996ee4c549a951a07f"
+                "reference": "df1d53257237a1c2cd48342661c107a04ca33b26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/di/zipball/7187bdd379c8b7c08b4933996ee4c549a951a07f",
-                "reference": "7187bdd379c8b7c08b4933996ee4c549a951a07f",
+                "url": "https://api.github.com/repos/EdmondDantes/di/zipball/df1d53257237a1c2cd48342661c107a04ca33b26",
+                "reference": "df1d53257237a1c2cd48342661c107a04ca33b26",
                 "shasum": ""
             },
             "require": {
@@ -145,9 +147,9 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/di/issues",
-                "source": "https://github.com/EdmondDantes/di/tree/v0.5.4"
+                "source": "https://github.com/EdmondDantes/di/tree/v0.5.10"
             },
-            "time": "2024-07-31T14:04:15+00:00"
+            "time": "2024-08-12T12:18:51+00:00"
         },
         {
             "name": "ifcastle/events",
@@ -287,16 +289,16 @@
         },
         {
             "name": "ifcastle/service-manager",
-            "version": "v0.5.2",
+            "version": "v0.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/service-manager.git",
-                "reference": "9a87ee40bdb094a1903f816d7670087a4d789c69"
+                "reference": "336415a818b2e34518e69e47514a5f84032e2b62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/service-manager/zipball/9a87ee40bdb094a1903f816d7670087a4d789c69",
-                "reference": "9a87ee40bdb094a1903f816d7670087a4d789c69",
+                "url": "https://api.github.com/repos/EdmondDantes/service-manager/zipball/336415a818b2e34518e69e47514a5f84032e2b62",
+                "reference": "336415a818b2e34518e69e47514a5f84032e2b62",
                 "shasum": ""
             },
             "require": {
@@ -325,9 +327,9 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/service-manager/issues",
-                "source": "https://github.com/EdmondDantes/service-manager/tree/v0.5.2"
+                "source": "https://github.com/EdmondDantes/service-manager/tree/v0.5.6"
             },
-            "time": "2024-08-05T11:49:49+00:00"
+            "time": "2024-08-12T09:49:10+00:00"
         },
         {
             "name": "ifcastle/type-definitions",
@@ -1584,16 +1586,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.61.1",
+            "version": "v3.62.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "94a87189f55814e6cabca2d9a33b06de384a2ab8"
+                "reference": "627692f794d35c43483f34b01d94740df2a73507"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/94a87189f55814e6cabca2d9a33b06de384a2ab8",
-                "reference": "94a87189f55814e6cabca2d9a33b06de384a2ab8",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/627692f794d35c43483f34b01d94740df2a73507",
+                "reference": "627692f794d35c43483f34b01d94740df2a73507",
                 "shasum": ""
             },
             "require": {
@@ -1675,7 +1677,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.61.1"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.62.0"
             },
             "funding": [
                 {
@@ -1683,7 +1685,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-31T14:33:15+00:00"
+            "time": "2024-08-07T17:03:09+00:00"
         },
         {
             "name": "psr/event-dispatcher",
