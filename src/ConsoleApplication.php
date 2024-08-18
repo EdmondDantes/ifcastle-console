@@ -5,6 +5,7 @@ namespace IfCastle\Console;
 
 use IfCastle\Application\ApplicationAbstract;
 use IfCastle\Application\EngineInterface;
+use IfCastle\Application\EngineRolesEnum;
 use IfCastle\ServiceManager\DescriptorRepositoryInterface;
 
 class ConsoleApplication            extends ApplicationAbstract
@@ -22,5 +23,11 @@ class ConsoleApplication            extends ApplicationAbstract
     protected function defineEngine(): EngineInterface|null
     {
         return new ConsoleEngine;
+    }
+    
+    #[\Override]
+    protected function defineEngineRole(): EngineRolesEnum
+    {
+        return EngineRolesEnum::CONSOLE;
     }
 }

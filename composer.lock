@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c91b2266499bf8dd3155925133a0554",
+    "content-hash": "5786c645d11848069cc619164c9df1d4",
     "packages": [
         {
             "name": "ifcastle/application",
-            "version": "v0.5.10",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EdmondDantes/application.git",
-                "reference": "25dc50166d2748b1673f0a1527520d1c68e9739d"
+                "reference": "8811fa19fb42c13fcaa55b6b2c01ecc9ede998f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EdmondDantes/application/zipball/25dc50166d2748b1673f0a1527520d1c68e9739d",
-                "reference": "25dc50166d2748b1673f0a1527520d1c68e9739d",
+                "url": "https://api.github.com/repos/EdmondDantes/application/zipball/8811fa19fb42c13fcaa55b6b2c01ecc9ede998f7",
+                "reference": "8811fa19fb42c13fcaa55b6b2c01ecc9ede998f7",
                 "shasum": ""
             },
             "require": {
@@ -50,9 +50,9 @@
             ],
             "support": {
                 "issues": "https://github.com/EdmondDantes/application/issues",
-                "source": "https://github.com/EdmondDantes/application/tree/v0.5.10"
+                "source": "https://github.com/EdmondDantes/application/tree/v0.6.1"
             },
-            "time": "2024-08-15T12:12:22+00:00"
+            "time": "2024-08-18T18:14:18+00:00"
         },
         {
             "name": "ifcastle/design-patterns",
