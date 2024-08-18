@@ -9,6 +9,7 @@ use IfCastle\ServiceManager\DescriptorRepositoryInterface;
 
 class ConsoleApplication            extends ApplicationAbstract
 {
+    #[\Override]
     protected function engineStartAfter(): void
     {
         (new SymfonyApplication(
