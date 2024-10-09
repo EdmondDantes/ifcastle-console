@@ -12,10 +12,19 @@ class ConsoleApplication            extends ApplicationAbstract
     #[\Override]
     protected function engineStartAfter(): void
     {
-        (new SymfonyApplication(
-            $this->systemEnvironment,
-            $this->systemEnvironment->resolveDependency(DescriptorRepositoryInterface::class)
-        ))->run();
+        try {
+            $application                = new SymfonyApplication(
+                $this->systemEnvironment,
+                $this->systemEnvironment->resolveDependency(DescriptorRepositoryInterface::class)
+            );
+        } catch (\Throwable $throwable) {
+            echo 'Console start error: ' . $throwable->getMessage() . PHP_EOL;
+            print_r($throwable);
+            echo PHP_EOL;
+            exit(-2);
+        }
+        
+        $application->run();
     }
     
     #[\Override]
