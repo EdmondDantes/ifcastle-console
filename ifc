@@ -4,6 +4,10 @@
 declare(strict_types=1);
 
 // load dependencies
+use IfCastle\Application\EngineRolesEnum;
+use IfCastle\Application\Runner;
+use IfCastle\Console\ConsoleApplication;
+
 (function () {
     $require = true;
     if (class_exists('Phar')) {
@@ -35,26 +39,32 @@ declare(strict_types=1);
         
         require_once $file;
     }
-})();
-
-\IfCastle\Console\ConsoleApplication::run((function(): string {
-  
-    $possibleDirs = [__DIR__.'/../../', __DIR__.'/../', __DIR__.'/vendor/'];
     
-    $dir = null;
-    
-    foreach ($possibleDirs as $possibleDir) {
-        if (file_exists($possibleDir.'autoload.php')) {
-            
-            $dir = realpath($possibleDir.'../');
-            
-            break;
+    $getAppDir = function(): string {
+        
+        $possibleDirs = [__DIR__.'/../../', __DIR__.'/../', __DIR__.'/vendor/'];
+        
+        $dir = null;
+        
+        foreach ($possibleDirs as $possibleDir) {
+            if (file_exists($possibleDir.'autoload.php')) {
+                
+                $dir = realpath($possibleDir.'../');
+                
+                break;
+            }
         }
-    }
+        
+        if (null === $dir) {
+            throw new \RuntimeException('Unable to locate autoload.php dir.');
+        }
+        
+        return $dir;
+    };
     
-    if (null === $dir) {
-        throw new \RuntimeException('Unable to locate autoload.php dir.');
-    }
+    $runner = new Runner(
+        $getAppDir(), EngineRolesEnum::CONSOLE->value, ConsoleApplication::class,
+    );
     
-    return $dir;
-})());
+    $runner->runAndExit();
+})();
