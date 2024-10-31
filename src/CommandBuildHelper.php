@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace IfCastle\Console;
@@ -16,30 +17,29 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CommandBuildHelper
 {
     public static function getCommandName(AsConsole                   $console,
-                                          FunctionDescriptorInterface $methodDescriptor,
-                                          ServiceDescriptorInterface  $serviceDescriptor,
-                                          string                      $serviceName
-    ): string
-    {
+        FunctionDescriptorInterface $methodDescriptor,
+        ServiceDescriptorInterface  $serviceDescriptor,
+        string                      $serviceName
+    ): string {
         $commandName            = $console->commandName;
 
-        if($commandName === '') {
+        if ($commandName === '') {
             $commandName        = $methodDescriptor->getName();
         }
 
         // Inherit service console attribute if current undefined
-        if($console->namespace === null) {
+        if ($console->namespace === null) {
             $serviceConsole     = $serviceDescriptor->findAttribute(AsConsole::class);
-            
-            if($serviceConsole instanceof AsConsole) {
+
+            if ($serviceConsole instanceof AsConsole) {
                 $console        = $serviceConsole;
             }
         }
-        
-        if($console->namespace !== null && $console->namespace !== '') {
-            $commandName        = $console->namespace.':'.$commandName;
-        } elseif($console->namespace === null) {
-            $commandName        = lcfirst($serviceName).':'.$commandName;
+
+        if ($console->namespace !== null && $console->namespace !== '') {
+            $commandName        = $console->namespace . ':' . $commandName;
+        } elseif ($console->namespace === null) {
+            $commandName        = \lcfirst($serviceName) . ':' . $commandName;
         }
 
         return $commandName;
@@ -47,12 +47,12 @@ class CommandBuildHelper
 
     public static function normalizeDefinition(DefinitionInterface $definition): ?string
     {
-        if($definition instanceof TypeInternal === false) {
+        if ($definition instanceof TypeInternal === false) {
             return null;
         }
-    
+
         $type                       = new \ReflectionClass($definition->getTypeName());
-        
+
         return match (true) {
             $type->implementsInterface(ProgressDispatcherInterface::class) => ProgressDispatcherInterface::class,
             $type->implementsInterface(InputInterface::class) => InputInterface::class,
@@ -60,57 +60,72 @@ class CommandBuildHelper
             default => null
         };
     }
-    
+
+    /**
+     * @param FunctionDescriptorInterface $methodDescriptor
+     * @return array<string, array{
+     *     isInternal: bool,
+     *     type: string,
+     *     definition: DefinitionInterface,
+     *     name: string,
+     *     defaultValue: mixed,
+     *     fromEnv: bool
+     * }>
+     * @throws ServiceException
+     */
     public static function buildArgumentsAndOptions(FunctionDescriptorInterface $methodDescriptor): array
     {
         $arguments                  = [];
 
         $formatBooleanName          = static function (string $name): string {
 
-            if (str_starts_with($name, 'is')) {
-                return lcfirst(substr($name, 2));
+            if (\str_starts_with($name, 'is')) {
+                return \lcfirst(\substr($name, 2));
             }
-            if (str_starts_with($name, 'has')) {
-                return lcfirst(substr($name, 3));
+
+            if (\str_starts_with($name, 'has')) {
+                return \lcfirst(\substr($name, 3));
             }
-            if (str_starts_with($name, 'have')) {
-                return lcfirst(substr($name, 4));
+
+            if (\str_starts_with($name, 'have')) {
+                return \lcfirst(\substr($name, 4));
             }
-            if (str_starts_with($name, 'should')) {
-                return lcfirst(substr($name, 6));
+
+            if (\str_starts_with($name, 'should')) {
+                return \lcfirst(\substr($name, 6));
             }
-            else {
-                return $name;
-            }
+
+            return $name;
+
         };
-        
+
         foreach ($methodDescriptor->getArguments() as $parameter) {
-            
+
             $definition             = $parameter;
             $type                   = $definition->getTypeName();
             $isInternal             = false;
             $fromEnv                = false;
 
-            if($parameter->findAttribute(FromEnv::class) !== null) {
+            if ($parameter->findAttribute(FromEnv::class) !== null) {
                 $fromEnv            = true;
-            } else if((false === $definition->isScalar() && false === $definition->canDecodeFromString())) {
-                
+            } elseif ((false === $definition->isScalar() && false === $definition->canDecodeFromString())) {
+
                 $normalizedType     = self::normalizeDefinition($definition);
-                
-                if(null === $normalizedType && $definition->isRequired()) {
+
+                if (null === $normalizedType && $definition->isRequired()) {
                     throw new ServiceException([
                         'template'  => 'Parameter {parameter} with type {type} can\'t be used with console command for {service}->{command}',
                         'parameter' => $definition->getName(),
                         'service'   => $methodDescriptor->getClassName(),
                         'command'   => $methodDescriptor->getName(),
-                        'type'      => $definition->getTypeName()
+                        'type'      => $definition->getTypeName(),
                     ]);
                 }
 
                 $isInternal         = true;
                 $type               = $normalizedType ?? $type;
             }
-    
+
             // Scalar and boolean parameters
             $arguments[$definition->getName()] = [
                 $isInternal,
@@ -118,10 +133,10 @@ class CommandBuildHelper
                 $definition,
                 $type === 'bool' ? $formatBooleanName($definition->getName()) : $definition->getName(),
                 $parameter->getDefaultValue(),
-                $fromEnv
+                $fromEnv,
             ];
         }
-        
+
         return $arguments;
     }
 }
