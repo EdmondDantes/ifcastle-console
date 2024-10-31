@@ -76,6 +76,7 @@ class CommandLoader implements CommandLoaderInterface
 
         foreach (DescriptorWalker::walkWithService($this->descriptorRepository) as $serviceName => [$serviceDescriptor, $methodDescriptor]) {
 
+            //@phpstan-ignore-next-line
             if (false === $methodDescriptor instanceof FunctionDescriptorInterface || false === $serviceDescriptor instanceof ServiceDescriptorInterface) {
                 continue;
             }

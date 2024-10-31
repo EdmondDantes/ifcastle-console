@@ -64,12 +64,12 @@ class CommandBuildHelper
     /**
      * @param FunctionDescriptorInterface $methodDescriptor
      * @return array<string, array{
-     *     isInternal: bool,
-     *     type: string,
-     *     definition: DefinitionInterface,
-     *     name: string,
-     *     defaultValue: mixed,
-     *     fromEnv: bool
+     *     bool,
+     *     string,
+     *     DefinitionInterface,
+     *     string,
+     *     mixed,
+     *     bool
      * }>
      * @throws ServiceException
      */

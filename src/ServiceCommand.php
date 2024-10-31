@@ -36,12 +36,12 @@ class ServiceCommand extends Command implements AutoResolverInterface
      * @param string $serviceName
      * @param string $methodName
      * @param array<string, array{
-     *      isInternal: bool,
-     *      type: string,
-     *      definition: DefinitionInterface,
-     *      name: string,
-     *      defaultValue: mixed,
-     *      fromEnv: bool
+     *      bool,
+     *      string,
+     *      DefinitionInterface,
+     *      string,
+     *      mixed,
+     *      bool
      *  }> $arguments
      * @param string[] $aliases
      * @param string $help
@@ -201,7 +201,7 @@ class ServiceCommand extends Command implements AutoResolverInterface
     {
         $progressBar                = null;
 
-        return new ProgressDispatcher(new CallbackEventHandler(static function (EventInterface $event) use ($input, $output, &$progressBar) {
+        return new ProgressDispatcher(new CallbackEventHandler(static function (EventInterface $event) use ($output, &$progressBar) {
 
             if ($event instanceof ProgressItemInterface) {
 
